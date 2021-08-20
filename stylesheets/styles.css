@@ -1,6 +1,6 @@
 * 
 {
-    background-color: chartreuse;
+    background-color: plum;
 }
 
 .header 
@@ -10,4 +10,10 @@
 
 h1 {
     text-align: center;
+}
+
+.bookCard
+{
+    grid-template-columns: auto;
+
 }
