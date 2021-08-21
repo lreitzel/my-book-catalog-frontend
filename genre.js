@@ -8,7 +8,8 @@ class Genre {
     renderGenre(){
         const genreList = document.getElementById('book-container');
         const genreName = document.createElement('div');
-        genreName.className = 'bookCard'
+        genreName.className = 'bookCard';
+        genreName.id = `list-${this.id}`;
         genreName.innerHTML = `<h3>${this.name}</h3>`;
         genreList.appendChild(genreName);
         genreName.appendChild(this.renderBooks());
