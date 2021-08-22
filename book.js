@@ -4,7 +4,7 @@ class Book {
         this.author =author;
         this.read = read;
         this.genre_id = genre_id;
-    }
+    };
 
     renderBook(){
         const bookLi = document.createElement('li');
@@ -14,7 +14,7 @@ class Book {
             bookLi.appendChild(bookInfo);
         })
         return bookLi;
-    }
+    };
 
     renderBookInfo(){
         const bookDiv = document.createElement('div');
@@ -23,5 +23,7 @@ class Book {
             <h3>Read: ${this.read}</h3>
         `
         return bookDiv;
-    }
+    };
+
+    
 }
