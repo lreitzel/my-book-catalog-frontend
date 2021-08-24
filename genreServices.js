@@ -1,11 +1,11 @@
 class GenreServices {
 
-    constructor(baseUrl){
-        this.baseUrl = baseUrl;
+    constructor(baseURL){
+        this.baseURL = `${baseURL}/genres`;
     };
 
     getGenres(){
-        fetch(this.baseUrl)
+        fetch(this.baseURL)
         .then(resp => resp.json())
         .then(genres => {
             genres.forEach(genre => {

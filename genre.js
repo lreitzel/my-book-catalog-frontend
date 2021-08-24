@@ -1,3 +1,4 @@
+const bookAPI = new BookServices("http://localhost:3000/books");
 class Genre {
 
     constructor({id, name, books}) {
@@ -10,7 +11,7 @@ class Genre {
         const genreCard = document.getElementById('book-container');
         const genreList = document.createElement('div');
         genreList.className = 'bookCard';
-        genreList.setAttribute('id', `list-${this.id}`);
+        genreList.id = `list-${this.id}`;
         genreList.innerHTML = `<h3>${this.name}</h3>`;
         genreCard.appendChild(genreList);
         genreList.appendChild(this.renderBooks());
@@ -23,16 +24,17 @@ class Genre {
         this.books.forEach(book => {
             const newBook = new Book(book);
             bookUL.appendChild(newBook.renderBook());
+            bookUL.appendChild(newBook.renderDeleteButton());
         });
         return bookUL;
     };
 
     renderBookForm(){
         const bookForm = document.createElement('form');
-        bookForm.setAttribute('action', '/books');
-        bookForm.setAttribute('method', 'post')
-        bookForm.setAttribute('id', 'book-form');
+        bookForm.className = 'book-form';
+        bookForm.id = `form-${this.id}`;
         bookForm.innerHTML = `
+            <input type="hidden" value=${this.id} id="genre_id"></input>
             <label for="title">Title:</label>
             <input type="text" id="title" name="title"></input>
             <label for="author">Author:</label>
@@ -41,6 +43,7 @@ class Genre {
             <input type="text" id="read" name="read"></input>
             <input type="submit"></input>
         `;
+        bookForm.addEventListener('submit', bookAPI.createBook)
         return bookForm;
     };
     
