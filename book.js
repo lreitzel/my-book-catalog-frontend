@@ -10,7 +10,7 @@ class Book {
     renderBook(){
         const bookLi = document.createElement('li');
         bookLi.id = `li-${this.id}`;
-        bookLi.innerText = `${this.title}`;
+        bookLi.innerHTML = `<h3>${this.title}</h3>`;
         bookLi.addEventListener('click', () => {
             const bookInfo = this.renderBookInfo();
             bookLi.appendChild(bookInfo);
@@ -21,7 +21,7 @@ class Book {
         const deleteBookBtn = document.createElement('button');
         deleteBookBtn.classList.add('delete-button');
         deleteBookBtn.id = `deletebtn-${this.id}`
-        deleteBookBtn.innerText = 'X';
+        deleteBookBtn.innerText = 'x';
         deleteBookBtn.addEventListener('click', (event) => {
             this.handleDeleteClick(event);
         });
@@ -31,8 +31,8 @@ class Book {
     renderBookInfo(){
         const bookDiv = document.createElement('div');
         bookDiv.innerHTML = `
-        <h3>Author: ${this.author}</h3>
-            <h3>Read: ${this.read}</h3>
+            <p>Author: ${this.author}</p>
+            <p>Read: ${this.read}</p>
         `
         return bookDiv;
     };

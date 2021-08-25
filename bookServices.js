@@ -1,3 +1,4 @@
+
 class BookServices {
     constructor(baseURL) {
         this.baseURL = baseURL;
@@ -6,37 +7,41 @@ class BookServices {
     createBook(event){
         event.preventDefault();
         const bookFormData = {
-            title: document.getElementById('title').value,
-            author: document.getElementById('author').value,
-            read: document.getElementById('read').value,
-            genre_id: document.getElementById('genre_id').value
-        }
+            title: event.target.children[2].value,
+            author: event.target.children[4].value,
+            read: event.target.children[6].value,
+            genre_id: event.target.children[0].value
+        };
         const config = {
-            method:'Post',
-            header: {
-                'Content-type': 'application/json',
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
             body: JSON.stringify(bookFormData)
         };
-        console.log(this.baseURL)
         fetch(this.baseURL, config)
         .then(resp => resp.json())
         .then(data => {
             const newBook = new Book(data)
-            const genreList = document.getElementById(`list-${newBook.genre_id}`)
-            genreList.appendChild(newBook.renderBook())
+            const bookUL = document.getElementById(`all-books-${newBook.genre_id}`)
+            bookUL.appendChild(newBook.renderBook());
+            bookUL.appendChild(newBook.renderDeleteButton());
+            event.target.reset();
         });
+
     };
 
     deleteBook(id) {
-        console.log(id)
         const config = {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
         };
         fetch(`${this.baseURL}/${id}`, config)
         .then(resp => console.log(resp))
         // .then(data => console.log(data.message));
-    }
+    };
     
 }
