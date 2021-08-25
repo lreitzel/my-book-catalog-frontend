@@ -12,7 +12,7 @@ class Genre {
         const genreList = document.createElement('div');
         genreList.className = 'bookCard';
         genreList.id = `list-${this.id}`;
-        genreList.innerHTML = `<h3>${this.name}</h3>`;
+        genreList.innerHTML = `<h2>${this.name}</h2>`;
         genreCard.appendChild(genreList);
         genreList.appendChild(this.renderBooks());
         genreList.appendChild(this.renderBookForm())
@@ -20,6 +20,7 @@ class Genre {
 
     renderBooks(){
         const bookUL = document.createElement('ul');
+        bookUL.id = `all-books-${this.id}`
         bookUL.classList.add('books');
         this.books.forEach(book => {
             const newBook = new Book(book);
@@ -43,7 +44,7 @@ class Genre {
             <input type="text" id="read" name="read"></input>
             <input type="submit"></input>
         `;
-        bookForm.addEventListener('submit', bookAPI.createBook)
+        bookForm.addEventListener('submit', bookAPI.createBook.bind(bookAPI));
         return bookForm;
     };
     
