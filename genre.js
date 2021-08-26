@@ -19,33 +19,35 @@ class Genre {
     };
 
     renderBooks(){
-        const bookUL = document.createElement('ul');
-        bookUL.id = `all-books-${this.id}`
-        bookUL.classList.add('books');
+        const bookDiv = document.createElement('div');
+        bookDiv.id = `all-books-${this.id}`
+        bookDiv.classList.add('books');
         this.books.forEach(book => {
             const newBook = new Book(book);
-            bookUL.appendChild(newBook.renderBook());
-            bookUL.appendChild(newBook.renderDeleteButton());
+            bookDiv.appendChild(newBook.renderBook());
+            bookDiv.appendChild(newBook.renderDeleteButton());
         });
-        return bookUL;
+        return bookDiv;
     };
 
     renderBookForm(){
+        const bookFormDiv = document.createElement('div');
         const bookForm = document.createElement('form');
         bookForm.className = 'book-form';
         bookForm.id = `form-${this.id}`;
         bookForm.innerHTML = `
             <input type="hidden" value=${this.id} id="genre_id"></input>
             <label for="title">Title:</label>
-            <input type="text" id="title" name="title"></input>
+            <input type="text" id="title" name="title"></input><br>
             <label for="author">Author:</label>
-            <input type="author" id="author" name="author"></input>
+            <input type="text" id="author" name="author"></input><br>
             <label for="read">Read:</label>
-            <input type="text" id="read" name="read"></input>
-            <input type="submit"></input>
+            <input type="text" id="read" name="read"></input><br>
+            <button>Add New Book</button>
         `;
         bookForm.addEventListener('submit', bookAPI.createBook.bind(bookAPI));
-        return bookForm;
+        bookFormDiv.append(bookForm);
+        return bookFormDiv;
     };
     
 };
