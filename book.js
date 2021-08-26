@@ -8,15 +8,16 @@ class Book {
     };
 
     renderBook(){
-        const bookLi = document.createElement('li');
-        bookLi.id = `li-${this.id}`;
-        bookLi.innerHTML = `<h3>${this.title}</h3>`;
-        bookLi.addEventListener('click', () => {
+        const bookP = document.createElement('p');
+        bookP.id = `p-${this.id}`;
+        bookP.innerText = `${this.title}`;
+        bookP.addEventListener('click', () => {
             const bookInfo = this.renderBookInfo();
-            bookLi.appendChild(bookInfo);
+            bookP.appendChild(bookInfo);
         });
-        return bookLi;
+        return bookP;
     };
+
     renderDeleteButton() {
         const deleteBookBtn = document.createElement('button');
         deleteBookBtn.classList.add('delete-button');
@@ -40,9 +41,9 @@ class Book {
     handleDeleteClick = (event) => {
         if (event.target.className === 'delete-button'){
             bookAPI.deleteBook(`${this.id}`);
-            const li = document.getElementById(`li-${this.id}`);
+            const p = document.getElementById(`p-${this.id}`);
             const dltbtn = document.getElementById(`deletebtn-${this.id}`);
-            li.remove();
+            p.remove();
             dltbtn.remove();
         };
     }
