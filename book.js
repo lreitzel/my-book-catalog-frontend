@@ -38,8 +38,6 @@ class Book {
             <p>Author: ${this.author}</p>
             <p>Read: ${this.read}</p>
         `
-        // const bookDeleteButton = this.renderDeleteButton();
-        // bookDiv.appendChild(bookDeleteButton);
         return bookDiv;
     };
 
