@@ -11,8 +11,11 @@ class Book {
         const bookP = document.createElement('p');
         bookP.id = `p-${this.id}`;
         bookP.innerText = `${this.title}`;
+        const bookDeleteButton = this.renderDeleteButton();
+        bookP.appendChild(bookDeleteButton);
         bookP.addEventListener('click', () => {
             const bookInfo = this.renderBookInfo();
+            
             bookP.appendChild(bookInfo);
         });
         return bookP;
@@ -35,6 +38,8 @@ class Book {
             <p>Author: ${this.author}</p>
             <p>Read: ${this.read}</p>
         `
+        // const bookDeleteButton = this.renderDeleteButton();
+        // bookDiv.appendChild(bookDeleteButton);
         return bookDiv;
     };
 
