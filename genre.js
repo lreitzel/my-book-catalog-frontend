@@ -45,8 +45,6 @@ class Genre {
             <input type="checkbox" id="read" name="read"></input>
             <button>Add New Book</button>
         `;
-        const checkbox = bookForm.querySelector("input#read");
-        checkbox.checked ? checkbox.value = "true" : checkbox.value = "false";
         bookForm.addEventListener('submit', bookAPI.createBook.bind(bookAPI));
         bookFormDiv.append(bookForm);
         return bookFormDiv;

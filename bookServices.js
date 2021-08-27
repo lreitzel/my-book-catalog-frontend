@@ -6,10 +6,13 @@ class BookServices {
 
     createBook(event){
         event.preventDefault();
+        const bookForm = event.target
+        const checkbox = bookForm.querySelector("input#read");
+        const checkValue = checkbox.checked ? checkbox.value = true : checkbox.value = false;
         const bookFormData = {
             title: event.target.children[2].value,
             author: event.target.children[4].value,
-            read: event.target.children[6].value,
+            read: checkValue,
             genre_id: event.target.children[0].value
         };
         const config = {
@@ -39,8 +42,12 @@ class BookServices {
             }
         };
         fetch(`${this.baseURL}/${id}`, config)
-        .then(resp => console.log(resp))
-        // .then(data => console.log(data.message));
+        .then(function(resp) {
+            if (resp.status === 204) {
+                console.log("Book Deleted!")
+            }
+        })
+        
     };
     
 }
