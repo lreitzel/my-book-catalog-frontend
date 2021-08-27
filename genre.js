@@ -25,23 +25,24 @@ class Genre {
         this.books.forEach(book => {
             const newBook = new Book(book);
             bookDiv.appendChild(newBook.renderBook());
-            bookDiv.appendChild(newBook.renderDeleteButton());
+            // bookDiv.appendChild(newBook.renderDeleteButton());
         });
         return bookDiv;
     };
 
     renderBookForm(){
         const bookFormDiv = document.createElement('div');
+        bookFormDiv.classList.add('book-form-div');
         const bookForm = document.createElement('form');
         bookForm.className = 'book-form';
         bookForm.id = `form-${this.id}`;
         bookForm.innerHTML = `
             <input type="hidden" value=${this.id} id="genre_id"></input>
-            <label for="title">Title:</label>
+            <label for="title">Title:</label><br>
             <input type="text" id="title" name="title"></input><br>
-            <label for="author">Author:</label>
+            <label for="author">Author:</label><br>
             <input type="text" id="author" name="author"></input><br>
-            <label for="read">Read:</label>
+            <label for="read">Read:</label><br>
             <input type="text" id="read" name="read"></input><br>
             <button>Add New Book</button>
         `;
