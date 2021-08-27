@@ -25,7 +25,6 @@ class Genre {
         this.books.forEach(book => {
             const newBook = new Book(book);
             bookDiv.appendChild(newBook.renderBook());
-            // bookDiv.appendChild(newBook.renderDeleteButton());
         });
         return bookDiv;
     };
@@ -38,14 +37,16 @@ class Genre {
         bookForm.id = `form-${this.id}`;
         bookForm.innerHTML = `
             <input type="hidden" value=${this.id} id="genre_id"></input>
-            <label for="title">Title:</label><br>
-            <input type="text" id="title" name="title"></input><br>
-            <label for="author">Author:</label><br>
-            <input type="text" id="author" name="author"></input><br>
-            <label for="read">Read:</label><br>
-            <input type="text" id="read" name="read"></input><br>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title"></input>
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author"></input>
+            <label for="read">Read:</label>
+            <input type="checkbox" id="read" name="read"></input>
             <button>Add New Book</button>
         `;
+        const checkbox = bookForm.querySelector("input#read");
+        checkbox.checked ? checkbox.value = "true" : checkbox.value = "false";
         bookForm.addEventListener('submit', bookAPI.createBook.bind(bookAPI));
         bookFormDiv.append(bookForm);
         return bookFormDiv;

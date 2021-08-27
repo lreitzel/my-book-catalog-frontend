@@ -26,7 +26,6 @@ class BookServices {
             const newBook = new Book(data)
             const bookUL = document.getElementById(`all-books-${newBook.genre_id}`)
             bookUL.appendChild(newBook.renderBook());
-            // bookUL.appendChild(newBook.renderDeleteButton());
             event.target.reset();
         });
 
