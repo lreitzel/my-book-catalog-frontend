@@ -15,7 +15,6 @@ class Book {
         bookP.appendChild(bookDeleteButton);
         bookP.addEventListener('click', () => {
             const bookInfo = this.renderBookInfo();
-            
             bookP.appendChild(bookInfo);
         });
         return bookP;
@@ -34,6 +33,7 @@ class Book {
     
     renderBookInfo(){
         const bookDiv = document.createElement('div');
+        bookDiv.classList.add('book-info-card')
         bookDiv.innerHTML = `
             <p>Author: ${this.author}</p>
             <p>Read: ${this.read}</p>
