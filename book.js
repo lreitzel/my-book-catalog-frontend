@@ -9,13 +9,13 @@ class Book {
 
     renderBook(){
         const bookP = document.createElement('p');
+        bookP.classList.add('book');
         bookP.id = `p-${this.id}`;
         bookP.innerText = `${this.title}`;
         const bookDeleteButton = this.renderDeleteButton();
         bookP.appendChild(bookDeleteButton);
-        bookP.addEventListener('click', () => {
-            const bookInfo = this.renderBookInfo();
-            bookP.appendChild(bookInfo);
+        bookP.addEventListener('click', (event) => {
+            this.handleBookInfoClick(event);
         });
         return bookP;
     };
@@ -33,13 +33,27 @@ class Book {
     
     renderBookInfo(){
         const bookDiv = document.createElement('div');
-        bookDiv.classList.add('book-info-card')
+        bookDiv.classList.add('book-info-card');
+        bookDiv.id = `info-card-${this.id}`;
         bookDiv.innerHTML = `
             <p>Author: ${this.author}</p>
             <p>Read: ${this.read}</p>
         `
         return bookDiv;
     };
+
+    handleBookInfoClick = (event) => {
+        if (event.target.className === 'book'){
+            const bookInfo = this.renderBookInfo();
+            event.target.appendChild(bookInfo);
+            event.target.classList.toggle('active');
+        } else if (event.target.className === 'book active'){
+            const bookInfoDiv = document.getElementById(`info-card-${this.id}`);
+            bookInfoDiv.remove();
+            event.target.classList.remove('active')
+        }
+
+    }
 
     handleDeleteClick = (event) => {
         if (event.target.className === 'delete-button'){
